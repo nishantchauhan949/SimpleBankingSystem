@@ -4,15 +4,21 @@ from random import randint
 
 class Customer:
     issuer_identification_number = 400000
+    customer_details = {}
+    number_of_customers = 0
     all_account_numbers = []
 
     def __init__(self):
-        self.card_pin = randint(0000, 9999)
+        self.card_pin = randint(1000, 9999)
         # self.card_number_length = 16
         self.account_number = self.account_number_generator()
         self.checksum = randint(0, 9)
         self.card_number = self.card_number_generator()
         self.balance = 0
+        self.account_details = [self.card_number, self.card_pin, self.balance]
+        self.number_of_customers += 1
+
+        self.customer_details = {self.number_of_customers: self.account_details}
 
     def account_number_generator(self):
         new_acc_num = randint(000000000, 999999999)
@@ -40,16 +46,50 @@ class Customer:
 
 
 def main():
-    customer_input = input("""1. Create an account
+    i = 0
+    while i < 2:
+        customer_input = int(input("""1. Create an account
 2. Log into account
 0. Exit
-""")
+"""))
+        print()
+        customer = Customer()
+        if customer_input == 0:
+            print('Bye!')
+            return
+        elif customer_input == 1:
+            print('Your card number:')
+            print(customer.card_number)
+            print('Your card PIN:')
+            print(customer.card_pin)
+            print()
+        else:
+            input_card_number = int(input("""Enter your card number:
+"""))
+            input_card_pin = int(input("""Enter your PIN:
+"""))
+            for k, v in customer.customer_details.items():
+                if v[0] == input_card_number and v[1] == input_card_pin:
+                    print('You have successfully logged in!')
 
-    cust1 = Customer()
+                    customer_input = int(input("""1. Balance
+2. Log out
+0. Exit
+"""))
+                    print()
+                    if customer_input == 0:
+                        print("""Bye!""")
+                        return
+                    elif customer_input == 1:
+                        print('Balance: ', v[2])
+                        return
+                    else:
+                        print('You have successfully logged out!')
+                        return
 
-    print(cust1.card_number)
-    print(cust1.account_number)
-    print(cust1.card_pin)
+                else:
+                    print('Wrong card number or PIN!')
+                    print()
 
 
 main()
