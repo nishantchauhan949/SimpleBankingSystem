@@ -16,17 +16,18 @@ class Customer:
         self.card_number = self.card_number_generator()
         self.balance = 0
         self.account_details = [self.card_number, self.card_pin, self.balance]
-        self.number_of_customers += 1
+        Customer.number_of_customers += 1
 
-        self.customer_details = {self.number_of_customers: self.account_details}
+        Customer.customer_details[self.number_of_customers] = self.account_details
+        print(self.customer_details)
 
     def account_number_generator(self):
         new_acc_num = randint(000000000, 999999999)
-        for acc_num in self.all_account_numbers:
+        for acc_num in Customer.all_account_numbers:
             if new_acc_num == acc_num:
                 new_acc_num = randint(000000000, 999999999)
 
-        self.all_account_numbers.append(new_acc_num)
+        Customer.all_account_numbers.append(new_acc_num)
         return new_acc_num
 
     def card_number_generator(self):
@@ -47,17 +48,20 @@ class Customer:
 
 def main():
     i = 0
+    all_customers = []
     while i < 2:
         customer_input = int(input("""1. Create an account
 2. Log into account
 0. Exit
 """))
         print()
-        customer = Customer()
+
+        # all_customers.append(customer)
         if customer_input == 0:
             print('Bye!')
             return
         elif customer_input == 1:
+            customer = Customer()
             print('Your card number:')
             print(customer.card_number)
             print('Your card PIN:')
@@ -68,7 +72,7 @@ def main():
 """))
             input_card_pin = int(input("""Enter your PIN:
 """))
-            for k, v in customer.customer_details.items():
+            for k, v in Customer.customer_details.items():
                 if v[0] == input_card_number and v[1] == input_card_pin:
                     print('You have successfully logged in!')
 
