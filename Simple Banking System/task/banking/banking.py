@@ -10,7 +10,6 @@ class Customer:
 
     def __init__(self):
         self.card_pin = randint(1000, 9999)
-        # self.card_number_length = 16
         self.account_number = self.account_number_generator()
         self.checksum = randint(0, 9)
         self.card_number = self.card_number_generator()
@@ -19,13 +18,12 @@ class Customer:
         Customer.number_of_customers += 1
 
         Customer.customer_details[self.number_of_customers] = self.account_details
-        print(self.customer_details)
 
     def account_number_generator(self):
-        new_acc_num = randint(000000000, 999999999)
+        new_acc_num = randint(100000000, 999999999)
         for acc_num in Customer.all_account_numbers:
             if new_acc_num == acc_num:
-                new_acc_num = randint(000000000, 999999999)
+                new_acc_num = randint(100000000, 999999999)
 
         Customer.all_account_numbers.append(new_acc_num)
         return new_acc_num
@@ -37,18 +35,8 @@ class Customer:
         return int(string_card_number)
 
 
-# TODO
-# There should be a bank class which should have all the account numbers,
-# card numbers and card pins etc created in that session.
-# Then there should be a create account class which should be a subclass of
-# bank class.
-# and then another class for logging in, which also should be a subclass of
-# bank class.
-
-
 def main():
     i = 0
-    all_customers = []
     while i < 2:
         customer_input = int(input("""1. Create an account
 2. Log into account
@@ -56,7 +44,6 @@ def main():
 """))
         print()
 
-        # all_customers.append(customer)
         if customer_input == 0:
             print('Bye!')
             return
