@@ -276,17 +276,6 @@ files:
     if __name__ == '__main__':
         BankingSystem('banking.banking').run_tests()
   learner_created: false
-- name: banking/testing.py
-  visible: true
-  text: |-
-    stri = 'cba334'
-
-    number = 49883394
-
-    print(list(stri))
-
-    print((list(number)))
-  learner_created: true
 feedback_link: https://hyperskill.org/projects/109/stages/593/implement#comment
 status: Unchecked
 record: -1

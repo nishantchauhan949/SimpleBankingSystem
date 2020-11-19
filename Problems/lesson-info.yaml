@@ -9,3 +9,6 @@ content:
 - Platypus
 - Zero (1)
 - Modeling situation
+- The __str__ method in exceptions
+- Raising exceptions
+- The __init__ method
