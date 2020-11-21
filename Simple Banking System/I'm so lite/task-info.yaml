@@ -276,6 +276,12 @@ files:
     if __name__ == '__main__':
         BankingSystem('banking.banking').run_tests()
   learner_created: false
+- name: banking/customers.py
+  visible: true
+  learner_created: true
+- name: banking/database_creation.py
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/109/stages/593/implement#comment
 status: Unchecked
 record: -1
